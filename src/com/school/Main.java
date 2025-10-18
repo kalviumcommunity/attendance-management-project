@@ -7,46 +7,40 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("--- School Administration & Attendance System ---");
 
-        // --- Creating School Personnel ---
-        System.out.println("\n--- Creating School Personnel ---");
-        // Note the new constructor for Student
-        Student student1 = new Student("Alice Wonderland", "Grade 10");
-        Student student2 = new Student("Bob The Builder", "Grade 9");
-        // Create our new types of Person
-        Teacher teacher1 = new Teacher("Dr. Emily Carter", "Physics");
-        Staff staff1 = new Staff("Mr. John Davis", "Librarian");
+        // --- Data Setup ---
+        // We need to store our objects in Lists
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Alice Wonderland", "Grade 10")); // ID will be 1
+        students.add(new Student("Bob The Builder", "Grade 9"));   // ID will be 2
 
-        System.out.println("\n--- School Personnel Details ---");
-        // These displayDetails() calls now use the overridden methods
-        student1.displayDetails();
-        student2.displayDetails();
-        teacher1.displayDetails();
-        staff1.displayDetails();
+        // Teacher/Staff are Persons, but not Storable (we didn't implement it)
+        // So we'll skip saving them for now.
 
-        // Course creation is unchanged
-        Course course1 = new Course("Intro to Quantum Physics");
-        System.out.println("\nAvailable Courses:");
-        course1.displayDetails();
+        List<Course> courses = new ArrayList<>();
+        courses.add(new Course("Intro to Quantum Physics")); // ID C101
+        courses.add(new Course("Advanced Algorithms"));     // ID C102
 
-
-        // --- Attendance Recording (Modified to use Person's ID) ---
-        System.out.println("\n--- Attendance Recording ---");
         List<AttendanceRecord> attendanceLog = new ArrayList<>();
+        // Use the getters to get the real, auto-generated IDs
+        attendanceLog.add(new AttendanceRecord(students.get(0).getId(), courses.get(0).getCourseId(), "Present"));
+        attendanceLog.add(new AttendanceRecord(students.get(1).getId(), courses.get(0).getCourseId(), "Absent"));
+        attendanceLog.add(new AttendanceRecord(students.get(0).getId(), courses.get(1).getCourseId(), "Present"));
 
-        // IMPORTANT: We now use student1.getId()
-        // This method was INHERITED from Person!
-        AttendanceRecord record1 = new AttendanceRecord(student1.getId(), course1.getCourseId(), "Present");
-        attendanceLog.add(record1);
+        System.out.println("\n--- School Personnel & Course Details ---");
+        // (Display logic removed for brevity, but you can keep it)
 
-        // Test our validation with a new invalid status
-        AttendanceRecord record2 = new AttendanceRecord(student2.getId(), course1.getCourseId(), "Daydreaming");
-        attendanceLog.add(record2);
+        // --- Saving Data ---
+        System.out.println("\n--- Saving Data to Files ---");
 
-        System.out.println("\n--- Attendance Log ---");
-        for (AttendanceRecord record : attendanceLog) {
-            record.displayRecord();
-        }
+        // 1. Create one instance of our service
+        FileStorageService storageService = new FileStorageService();
 
-        System.out.println("\nSession 5: Inheritance Hierarchy Established Complete.");
+        // 2. Use it to save all our different lists!
+        storageService.saveData(students, "students.txt");
+        storageService.saveData(courses, "courses.txt");
+        storageService.saveData(attendanceLog, "attendance_log.txt");
+
+        System.out.println("\nSession 6: Interface-Driven Persistence (Saving) Complete.");
+        System.out.println("Check students.txt, courses.txt, and attendance_log.txt for output.");
     }
 }
