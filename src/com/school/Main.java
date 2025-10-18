@@ -4,33 +4,38 @@ public class Main{
     public static void main(String args[]){
         System.out.println("--- School Attendance System ---");
 
-        Student[] students = new Student[2];
+        // Using constructors for initialization
+        System.out.println("\nCreating Students and Courses using Constructors:");
 
-        students[0] = new Student();
-        students[0].setDetails(1, "Mangalam Kumar");
-        students[1] = new Student();
-        students[1].setDetails(2, "Elon Musk");
+        // Notice how we create objects now. 'new' calls the constructor.
+        // We pass the required arguments directly. No more setDetails()!
+        Student student1 = new Student("Alice Wonderland");
+        Student student2 = new Student("Bob The Builder");
 
-        Course[] courses = new Course[2];
-        courses[0] = new Course();
-        courses[0].setDetails("CS101", "Intro to Programming");
-        courses[1] = new Course();
-        courses[1].setDetails("MA202", "Linear Algebra");
+        Course course1 = new Course("Intro to Programming");
+        Course course2 = new Course("Linear Algebra");
 
-        System.out.println("\nRegistered Students: ");
+        System.out.println("\nRegistered Students:");
+        student1.displayDetails(); // Will have ID 1
+        student2.displayDetails(); // Will have ID 2
 
-        for(Student student: students){
-            if(student != null){
-                student.displayDetails();
-            }
-        }
+        System.out.println("\nAvailable Courses:");
+        course1.displayDetails(); // Will have ID C101
+        course2.displayDetails(); // Will have ID C102
 
-        System.out.println("\nAvailable Courses: ");
-        for(Course course : courses){
-            if(course != null){
-                course.displayDetails();
-            }
-        }
-        System.out.println("\nSession 2: Core Domain Modelling Complete.");
+        // Demonstrate auto-ID generation with new instances
+        System.out.println("\n--- Auto-ID Generation Test ---");
+        System.out.println("Creating one more student and course...");
+
+        // This proves the static counter is working.
+        Student student3 = new Student("Charlie Chaplin");
+        Course course3 = new Course("Data Structures");
+
+        System.out.print("New Student: ");
+        student3.displayDetails(); // Will have ID 3
+        System.out.print("New Course: ");
+        course3.displayDetails(); // Will have ID C103
+
+        System.out.println("\nSession 3: Constructor Initialization & Auto-ID Generation Complete.");
     }
 }
