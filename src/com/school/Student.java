@@ -1,13 +1,21 @@
 package com.school;
 
 public class Student{
-    int studentId;
-    String name;
+    private int studentId;
+    private String name;
     private static int nextStudentIdCounter = 1;
 
-    public void setDetails(String studentName){
-        this.studentId = nextStudentIdCounter++;
-        this.name = studentName;
+    public Student(String name) {
+    this.studentId = nextStudentIdCounter++;
+    this.name = name;
+    }
+
+    public int getStudentId(){
+        return this.studentId;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public void displayDetails(){
