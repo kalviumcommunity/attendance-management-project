@@ -1,7 +1,7 @@
 ### Commands to run
 1. Compile the Code: 
     ```bash
-    javac src/com/school/Main.java
+    javac src/com/school/*.java
     ```
 2. Run the program:
     ```bash
