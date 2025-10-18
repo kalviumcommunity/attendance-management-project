@@ -19,6 +19,6 @@ public class Course{
     }
 
     public void displayDetails(){
-        System.out.println("Course ID: C"+this.courseId+", Name: "+ this.courseId);
+        System.out.println("Course ID: C"+this.courseId+", Name: "+ this.courseName);
     }
 }
