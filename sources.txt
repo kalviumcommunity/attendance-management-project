@@ -1,4 +1,0 @@
-src/com/school/AttendanceRecord.java
-src/com/school/Course.java
-src/com/school/Main.java
-src/com/school/Student.java
